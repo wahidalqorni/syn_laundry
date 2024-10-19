@@ -9,7 +9,7 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       // baris 1 : AppBar
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: true, //untuk menempatkan title di tengah2
         title: Text(
           "Persiapkan Akunmu",
           style: primaryTextStyle.copyWith(
@@ -128,11 +128,10 @@ class RegisterPage extends StatelessWidget {
                 SizedBox(
                   height: 37,
                 ),
-                
+                // Spacer(),
                 Container(
                   height: 50,
                   width: double.infinity,
-                  
                   child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: Color(0xFF4ABF92),
@@ -153,6 +152,9 @@ class RegisterPage extends StatelessWidget {
             ),
           ),
 
+          SizedBox(
+            height: 20,
+          ),
           // baris 4 : BELUM PUNYA AKUN?
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

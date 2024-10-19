@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syn_laundry/pages/beranda_page.dart';
 import 'package:syn_laundry/pages/login_page.dart';
 import 'package:syn_laundry/pages/register_page.dart';
 import 'package:syn_laundry/pages/splash_page.dart';

@@ -110,7 +110,9 @@ class LoginPage extends StatelessWidget {
               ],
             ),
           ),
-
+          SizedBox(
+            height: 20,
+          ),
           // baris 4 : BELUM PUNYA AKUN?
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +129,7 @@ class LoginPage extends StatelessWidget {
                 style: greenTextStyle.copyWith(
                   fontSize: 16,
                 ),
-              )
+              ),
             ],
           ),
         ],
