@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 // buat variabel untuk menampung value dari sebuah warna
 Color primaryColor = Color(0XFF4ABF92);
+Color greenColor = Color(0XFFE8FFF6);
 Color secondaryColor = Color.fromRGBO(232, 255, 246, 1);
 Color blackColor = Color(0XFF333333);
 Color yellowColor = Color(0XFFE4B22F);

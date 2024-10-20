@@ -121,11 +121,13 @@ class BerandaPage extends StatelessWidget {
                     nama: "Laundry Regular",
                     harga: "IDR 5000 / Kg",
                   ),
+                  SizedBox(width: 20,),
                   ProductWidget(
                     imgUrl: "assets/img-setrika.png",
                     nama: "Laundry Plus Strika",
                     harga: "IDR 8000 / Kg",
                   ),
+                  SizedBox(width: 20,),
                   ProductWidget(
                     imgUrl: "assets/img-laundry.png",
                     nama: "Laundry Express",

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:syn_laundry/pages/beranda_page.dart';
 import 'package:syn_laundry/pages/empty_order_page.dart';
+import 'package:syn_laundry/pages/landing_page.dart';
+import 'package:syn_laundry/pages/list_order_page.dart';
 import 'package:syn_laundry/pages/login_page.dart';
+import 'package:syn_laundry/pages/profil_page.dart';
 import 'package:syn_laundry/pages/register_page.dart';
 import 'package:syn_laundry/pages/splash_page.dart';
 import 'package:syn_laundry/pages/success_page.dart';
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashPage(),
+      home: LandingPage(),
     );
   }
 }
