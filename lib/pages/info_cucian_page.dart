@@ -289,7 +289,7 @@ class _InfoCucianPageState extends State<InfoCucianPage> {
         height: 50,
         child: TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color(0xFF4ABF92),
+            backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),

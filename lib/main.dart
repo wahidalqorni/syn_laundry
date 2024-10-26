@@ -3,6 +3,7 @@ import 'package:syn_laundry/pages/beranda_page.dart';
 import 'package:syn_laundry/pages/empty_order_page.dart';
 import 'package:syn_laundry/pages/info_cucian_page.dart';
 import 'package:syn_laundry/pages/info_pesanan_page.dart';
+import 'package:syn_laundry/pages/konfirmasi_page.dart';
 import 'package:syn_laundry/pages/landing_page.dart';
 import 'package:syn_laundry/pages/list_order_page.dart';
 import 'package:syn_laundry/pages/login_page.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InfoCucianPage(),
+      home: KonfirmasiPage(),
     );
   }
 }
