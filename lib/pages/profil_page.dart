@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:syn_laundry/pages/edit_profil_page.dart';
+import 'package:syn_laundry/pages/reset_password_page.dart';
 import 'package:syn_laundry/pages/splash_page.dart';
 import 'package:syn_laundry/themes/themes.dart';
 
@@ -23,9 +25,14 @@ class ProfilPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.bottomRight,
-              child: Text(
-                "Edit Profil",
-                style: greenTextStyle,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilPage() ));
+                },
+                child: Text(
+                  "Edit Profil",
+                  style: greenTextStyle,
+                ),
               ),
             ),
             SizedBox(
@@ -88,21 +95,26 @@ class ProfilPage extends StatelessWidget {
             SizedBox(
               height: 39,
             ),
-            Row(
-              children: [
-                Text(
-                  "Reset Password",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordPage() ));
+              },
+              child: Row(
+                children: [
+                  Text(
+                    "Reset Password",
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                Spacer(),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 24,
-                ),
-              ],
+                  Spacer(),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 24,
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: 39,

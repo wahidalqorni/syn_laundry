@@ -23,7 +23,6 @@ class _LandingPageState extends State<LandingPage> {
     BerandaPage(), // index 0
     ListOrderPage(), // index 1
     ProfilPage(), // index 2
-    SuccessPage(),
   ];
 
   // buat fungsi tap
@@ -52,11 +51,6 @@ class _LandingPageState extends State<LandingPage> {
           BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: "Profil"),
-
-           // index 3
-          BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: "Success"),
 
 
         ],

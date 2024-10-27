@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
                   obscureText: true,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
-                    suffix: Image.asset('assets/ic-eye.png', width: 20,),
+                    suffixIcon: Image.asset('assets/ic-eye.png'),
                     hintText: "Masukkan Password",
                     hintStyle: secondaryTextStyle,
                     enabledBorder: OutlineInputBorder(
