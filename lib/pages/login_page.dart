@@ -6,9 +6,14 @@ import 'package:syn_laundry/pages/register_page.dart';
 import 'package:syn_laundry/themes/themes.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -36,92 +41,96 @@ class LoginPage extends StatelessWidget {
           // baris 3 : KOLOM INPUT
           Container(
             margin: EdgeInsets.only(top: 60, left: 20, right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFormField(
-                  controller: authC.email,
-                  // maxLines: 4,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: "Masukkan Username",
-                    hintStyle: secondaryTextStyle,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: greyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: greyColor,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 37,
-                ),
-                TextFormField(
-                  controller: authC.password,
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    suffixIcon: Image.asset('assets/ic-eye.png'),
-                    hintText: "Masukkan Password",
-                    hintStyle: secondaryTextStyle,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: greyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: greyColor,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "Lupa Password",
-                      style: greenTextStyle.copyWith(
-                        fontSize: 16,
-                      ),
-                    )),
-                SizedBox(
-                  height: 37,
-                ),
-                Container(
-                  height: 50,
-                  width: double.infinity,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color(0xFF4ABF92),
-                      shape: RoundedRectangleBorder(
+            child: Form(
+              
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  
+                  TextFormField(
+                    controller: authC.email,
+                    // maxLines: 4,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      hintText: "Masukkan Username",
+                      hintStyle: secondaryTextStyle,
+                      enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
                       ),
-                    ),
-                    onPressed: (){
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage() ));
-                      authC.login();
-                    },
-                    child: Text(
-                      "Masuk",
-                      style: TextStyle(
-                        color: Colors.white,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 37,
+                  ),
+                  TextFormField(
+                    controller: authC.password,
+                    obscureText: true,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      suffixIcon: Image.asset('assets/ic-eye.png'),
+                      hintText: "Masukkan Password",
+                      hintStyle: secondaryTextStyle,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        "Lupa Password",
+                        style: greenTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                      )),
+                  SizedBox(
+                    height: 37,
+                  ),
+                  Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Color(0xFF4ABF92),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      onPressed: (){
+                        // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage() ));
+                        authC.login();
+                      },
+                      child: Text(
+                        "Masuk",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
