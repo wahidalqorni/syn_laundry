@@ -18,11 +18,15 @@ class AuthController extends GetxController {
   TextEditingController telepon = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  // variabel utk menampung nilai loading
+  RxBool loading = false.obs;
+
   // buat fungsi login
   Future login() async {
     // variabel link end point
     var url = Uri.parse(Config().urlLogin);
     try {
+      loading.value = true;
       // response
       final response = await http
           .post(url, body: {"email": email.text, "password": password.text});
@@ -43,9 +47,11 @@ class AuthController extends GetxController {
         SpUtil.putString("name", responseDecode["data"]["name"]);
         SpUtil.putString("email", responseDecode["data"]["email"]);
         SpUtil.putString("telepon", responseDecode["data"]["telepon"]);
+        loading.value = false;
         // arahkan ke halaman LandingPage
         Get.offAll(LandingPage());
       } else {
+        loading.value = false;
         // jika gagal
         Get.snackbar(
           "Error",
@@ -56,6 +62,7 @@ class AuthController extends GetxController {
         );
       }
     } catch (e) {
+      loading.value = false;
       Get.snackbar(
         "Error",
         e.toString(),
@@ -116,7 +123,7 @@ class AuthController extends GetxController {
     var url = Uri.parse(Config().urlLogout);
     try {
       // response
-      final response = await http.get(url) ;
+      final response = await http.get(url);
 
       // ambil response body dari json yg didapatkan
       var responseDecode = json.decode(response.body);
@@ -150,5 +157,4 @@ class AuthController extends GetxController {
       );
     }
   }
-
 }

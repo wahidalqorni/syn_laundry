@@ -120,31 +120,33 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 37,
                   ),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xFF4ABF92),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                  Obx(() => Container(
+                        height: 50,
+                        width: double.infinity,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Color(0xFF4ABF92),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          onPressed: () {
+                            // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage() ));
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              authC.login();
+                            }
+                          },
+                          child: authC.loading == true ? CircularProgressIndicator(
+                            color: whiteColor,
+                          ) : Text(
+                            "Masuk",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                      ),
-                      onPressed: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage() ));
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          authC.login();
-                        }
-                      },
-                      child: Text(
-                        "Masuk",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
+                      )),
                 ],
               ),
             ),
