@@ -15,7 +15,15 @@ import 'package:syn_laundry/pages/reset_password_page.dart';
 import 'package:syn_laundry/pages/splash_page.dart';
 import 'package:syn_laundry/pages/success_page.dart';
 import 'package:get/get.dart';
-void main() {
+import 'package:sp_util/sp_util.dart';
+
+// konfig SpUtil agar bisa dipakai
+// tambahkan async pada void main() {}
+// tambahkan WidgetsFlutterBinding.ensureInitialized(); dan await SpUtil.getInstance();
+// di dalam void main() async {}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
   runApp(const MyApp());
 }
 
@@ -25,6 +33,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // krn menggunakan package Get, maka yg tadinya MaterialApp kita ubah menjadi GetMaterialApp
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

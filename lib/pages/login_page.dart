@@ -16,9 +16,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-
     // panggil controller auth
     final authC = Get.put(AuthController());
+
+    // membuat key Validation untuk form
+    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: ListView(
@@ -42,12 +44,17 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             margin: EdgeInsets.only(top: 60, left: 20, right: 20),
             child: Form(
-              
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
                   TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Email tidak boleh kosong";
+                      }
+                      return null;
+                    },
                     controller: authC.email,
                     // maxLines: 4,
                     keyboardType: TextInputType.emailAddress,
@@ -72,6 +79,12 @@ class _LoginPageState extends State<LoginPage> {
                     height: 37,
                   ),
                   TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Password tidak boleh kosong";
+                      }
+                      return null;
+                    },
                     controller: authC.password,
                     obscureText: true,
                     keyboardType: TextInputType.text,
@@ -117,9 +130,12 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      onPressed: (){
+                      onPressed: () {
                         // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage() ));
-                        authC.login();
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          authC.login();
+                        }
                       },
                       child: Text(
                         "Masuk",
@@ -148,8 +164,9 @@ class _LoginPageState extends State<LoginPage> {
                 width: 2,
               ),
               InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: Text(
                   "Daftar",

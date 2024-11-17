@@ -41,6 +41,8 @@ dependencies:
   get: ^4.6.5
   # untuk koneksi ke web service
   http: ^1.2.2
+  # untuk menyimpan data di cache hape
+  sp_util: ^2.0.3
 
 dev_dependencies:
   flutter_test:

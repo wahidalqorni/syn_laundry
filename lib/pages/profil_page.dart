@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:syn_laundry/controllers/auth_controller.dart';
 import 'package:syn_laundry/pages/edit_profil_page.dart';
 import 'package:syn_laundry/pages/reset_password_page.dart';
 import 'package:syn_laundry/pages/splash_page.dart';
 import 'package:syn_laundry/themes/themes.dart';
+import 'package:sp_util/sp_util.dart';
 
 class ProfilPage extends StatelessWidget {
-  const ProfilPage({super.key});
+  ProfilPage({super.key});
+
+  // panggil controller AuthController (krn kita akan memanggil function logout yg ada di AuthController)
+  final authC = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,10 @@ class ProfilPage extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilPage() ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditProfilPage()));
                 },
                 child: Text(
                   "Edit Profil",
@@ -48,7 +57,7 @@ class ProfilPage extends StatelessWidget {
               height: 14,
             ),
             Text(
-              "Uzumaki Naruto",
+              SpUtil.getString("name").toString(),
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -67,7 +76,7 @@ class ProfilPage extends StatelessWidget {
               height: 14,
             ),
             Text(
-              "naruto@uzumaki.com",
+              SpUtil.getString("email").toString(),
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -86,7 +95,7 @@ class ProfilPage extends StatelessWidget {
               height: 14,
             ),
             Text(
-              "08992121212",
+              SpUtil.getString("telepon").toString(),
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -97,7 +106,10 @@ class ProfilPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordPage() ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ResetPasswordPage()));
               },
               child: Row(
                 children: [
@@ -166,17 +178,19 @@ class ProfilPage extends StatelessWidget {
                               ],
                             ),
                             GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => SplashPage() ));
+                              onTap: () {
+                               authC.logout();
                               },
                               child: Center(
-                                child: Text("Yakin, keluar", style: redTextStyle.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ), ),
+                                child: Text(
+                                  "Yakin, keluar",
+                                  style: redTextStyle.copyWith(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
                             ),
-                            
                           ],
                         ),
                       );
