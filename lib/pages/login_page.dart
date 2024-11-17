@@ -78,34 +78,38 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 37,
                   ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Password tidak boleh kosong";
-                      }
-                      return null;
-                    },
-                    controller: authC.password,
-                    obscureText: true,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      suffixIcon: Image.asset('assets/ic-eye.png'),
-                      hintText: "Masukkan Password",
-                      hintStyle: secondaryTextStyle,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: greyColor,
+                  Obx(() => TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password tidak boleh kosong";
+                          }
+                          return null;
+                        },
+                        controller: authC.password,
+                        obscureText: authC.secure == true ? false : true,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                            onTap: () {
+                              authC.isObsecure();
+                            },
+                            child: Image.asset('assets/ic-eye.png')),
+                          hintText: "Masukkan Password",
+                          hintStyle: secondaryTextStyle,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: greyColor,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: greyColor,
+                            ),
+                          ),
                         ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: greyColor,
-                        ),
-                      ),
-                    ),
-                  ),
+                      )),
                   SizedBox(
                     height: 10,
                   ),
@@ -137,14 +141,16 @@ class _LoginPageState extends State<LoginPage> {
                               authC.login();
                             }
                           },
-                          child: authC.loading == true ? CircularProgressIndicator(
-                            color: whiteColor,
-                          ) : Text(
-                            "Masuk",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
+                          child: authC.loading == true
+                              ? CircularProgressIndicator(
+                                  color: whiteColor,
+                                )
+                              : Text(
+                                  "Masuk",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
                         ),
                       )),
                 ],

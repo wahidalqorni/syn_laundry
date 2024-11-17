@@ -21,6 +21,13 @@ class AuthController extends GetxController {
   // variabel utk menampung nilai loading
   RxBool loading = false.obs;
 
+  // variabel obsecure
+  RxBool secure = false.obs;
+
+  void isObsecure() {
+    secure.value = !secure.value;
+  }
+
   // buat fungsi login
   Future login() async {
     // variabel link end point
