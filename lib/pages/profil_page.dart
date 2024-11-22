@@ -179,16 +179,24 @@ class ProfilPage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                               authC.logout();
+                                authC.logout();
                               },
                               child: Center(
-                                child: Text(
-                                  "Yakin, keluar",
-                                  style: redTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                child: Obx(() => authC.loading == true
+                                    ? Text(
+                                        "Loading....",
+                                        style: redTextStyle.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    : Text(
+                                        "Yakin, keluar",
+                                        style: redTextStyle.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )),
                               ),
                             ),
                           ],

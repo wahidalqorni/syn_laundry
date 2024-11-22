@@ -22,7 +22,7 @@ class AuthController extends GetxController {
   RxBool loading = false.obs;
 
   // variabel obsecure
-  RxBool secure = false.obs;
+  RxBool secure = true.obs;
 
   void isObsecure() {
     secure.value = !secure.value;
@@ -85,6 +85,7 @@ class AuthController extends GetxController {
     // variabel link end point
     var url = Uri.parse(Config().urlRegister);
     try {
+      loading.value = true;
       // response
       final response = await http.post(url, body: {
         "name": name.text,
@@ -100,8 +101,17 @@ class AuthController extends GetxController {
       Map<String, dynamic> errorValidation = responseDecode["data"];
       // jika berhasil
       if (response.statusCode == 200) {
+
+         // simpan data user menggunakan package SpUtil
+        SpUtil.putInt("id_user", responseDecode["data"]["id"]);
+        SpUtil.putString("name", responseDecode["data"]["name"]);
+        SpUtil.putString("email", responseDecode["data"]["email"]);
+        SpUtil.putString("telepon", responseDecode["data"]["telepon"]);
+        loading.value = false;
+        
         Get.offAll(LandingPage());
       } else {
+        loading.value = false;
         // jika gagal
         Get.snackbar(
           "Error",
@@ -114,6 +124,7 @@ class AuthController extends GetxController {
         );
       }
     } catch (e) {
+      loading.value = false;
       Get.snackbar(
         "Error",
         e.toString(),
@@ -129,6 +140,7 @@ class AuthController extends GetxController {
     // variabel link end point
     var url = Uri.parse(Config().urlLogout);
     try {
+      loading.value = true;
       // response
       final response = await http.get(url);
 
@@ -137,6 +149,7 @@ class AuthController extends GetxController {
 
       // jika berhasil
       if (response.statusCode == 200) {
+        loading.value = false;
         // hapus data user yg tersimpan di local storage device menggunakan package SpUtil
         SpUtil.remove("id_user");
         SpUtil.remove("name");
@@ -145,6 +158,7 @@ class AuthController extends GetxController {
         // arahkan ke halaman SplashPage
         Get.offAll(SplashPage());
       } else {
+        loading.value = false;
         // jika gagal
         Get.snackbar(
           "Error",
@@ -155,6 +169,7 @@ class AuthController extends GetxController {
         );
       }
     } catch (e) {
+      loading.value = false;
       Get.snackbar(
         "Error",
         e.toString(),

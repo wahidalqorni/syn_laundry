@@ -73,6 +73,18 @@ class _LoginPageState extends State<LoginPage> {
                           color: greyColor,
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -86,14 +98,14 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         controller: authC.password,
-                        obscureText: authC.secure == true ? false : true,
+                        obscureText: authC.secure == true ? true : false,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
-                            onTap: () {
-                              authC.isObsecure();
-                            },
-                            child: Image.asset('assets/ic-eye.png')),
+                              onTap: () {
+                                authC.isObsecure();
+                              },
+                              child: Image.asset('assets/ic-eye.png')),
                           hintText: "Masukkan Password",
                           hintStyle: secondaryTextStyle,
                           enabledBorder: OutlineInputBorder(
@@ -103,6 +115,18 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: greyColor,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: greyColor,
+                            ),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                             borderSide: BorderSide(
                               color: greyColor,

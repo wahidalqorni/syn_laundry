@@ -71,6 +71,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: greyColor,
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -100,6 +112,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: greyColor,
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -124,6 +148,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(
                           color: greyColor,
@@ -163,6 +199,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: greyColor,
                         ),
                       ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: greyColor,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -172,30 +220,34 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 37,
                   ),
                   // Spacer(),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Color(0xFF4ABF92),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                  Obx(() => Container(
+                        height: 50,
+                        width: double.infinity,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Color(0xFF4ABF92),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              authC.register();
+                            }
+                          },
+                          child: authC.loading == true
+                              ? CircularProgressIndicator(
+                                  color: whiteColor,
+                                )
+                              : Text(
+                                  "Daftar",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
                         ),
-                      ),
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          authC.register();
-                        }
-                      },
-                      child: Text(
-                        "Daftar",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
+                      )),
                 ],
               ),
             ),
