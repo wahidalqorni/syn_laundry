@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:syn_laundry/models/Checkout_model.dart';
 import 'package:syn_laundry/themes/themes.dart';
 
 class OrderWidget extends StatelessWidget {
-  const OrderWidget({super.key, required this.layanan, required this.paket, required this.tanggal, required this.status});
+  const OrderWidget({super.key, required this.dataCheckout, });
 
-    // buat variabel agar bisa menerima nilai dari si pemakai class/widget ini
-    final String layanan, paket, tanggal, status;
+  final CheckoutModel dataCheckout;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,10 @@ class OrderWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // KODE
+                  Text(dataCheckout.kodeTransaksi, style: primaryTextStyle.copyWith(
+                    fontWeight: FontWeight.bold
+                  ), ),
                   // BARIS 1
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,7 +42,7 @@ class OrderWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            layanan,
+                            dataCheckout.item.namaProduct,
                             style: primaryTextStyle.copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -54,7 +58,7 @@ class OrderWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            tanggal,
+                            "20/10/2024",
                             style: primaryTextStyle.copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -74,7 +78,7 @@ class OrderWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            paket,
+                            dataCheckout.item.merkProduct,
                             style: primaryTextStyle.copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -90,8 +94,11 @@ class OrderWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            status,
-                            style: status == "Diproses" ? yellowTextStyle.copyWith(
+                            dataCheckout.status == "0" ? "Baru" : (dataCheckout.status == "1" ? "Diproses" : "Selesai") ,
+                            style: dataCheckout.status == "0" ? redTextStyle.copyWith(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ) : dataCheckout.status == "1" ? yellowTextStyle.copyWith(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ) : greenTextStyle.copyWith(
