@@ -102,7 +102,7 @@ class AuthController extends GetxController {
       // jika berhasil
       if (response.statusCode == 200) {
 
-         // simpan data user menggunakan package SpUtil
+        // simpan data user menggunakan package SpUtil
         SpUtil.putInt("id_user", responseDecode["data"]["id"]);
         SpUtil.putString("name", responseDecode["data"]["name"]);
         SpUtil.putString("email", responseDecode["data"]["email"]);
