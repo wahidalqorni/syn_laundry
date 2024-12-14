@@ -22,7 +22,7 @@ class CheckoutServices {
       if(response.statusCode == 200){
         // ambil isi body dari output json dan decde jsonnya
         var responseBody = json.decode(response.body);
-        print(responseBody);
+      
         // simpan hasil response body ke dalam variabel
         List listCheckoutBaruResponse = responseBody["data"];
   
@@ -55,7 +55,7 @@ class CheckoutServices {
       if(response.statusCode == 200){
         // ambil isi body dari output json dan decde jsonnya
         var responseBody = json.decode(response.body);
-        print(responseBody);
+        
         // simpan hasil response body ke dalam variabel
         List listCheckoutProsesResponse = responseBody["data"];
   
@@ -88,7 +88,7 @@ class CheckoutServices {
       if(response.statusCode == 200){
         // ambil isi body dari output json dan decde jsonnya
         var responseBody = json.decode(response.body);
-        print(responseBody);
+      
         // simpan hasil response body ke dalam variabel
         List listCheckoutSelesaiResponse = responseBody["data"];
   

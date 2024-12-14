@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syn_laundry/models/Checkout_model.dart';
 import 'package:syn_laundry/themes/themes.dart';
+import 'package:intl/intl.dart';
 
 class OrderWidget extends StatelessWidget {
   const OrderWidget({
@@ -12,6 +13,15 @@ class OrderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // double c = 4.56;
+    // int a = c.floor();
+
+    // membuat format tanggal menggunakan library intl
+    DateFormat dateFormat = DateFormat('dd/MM/yyy');
+    // konvert data tanggal yg dpt dari json (sudah dimodelkan di class CheckoutModel), yaitu atribut createdAt
+    String formattedDate = dateFormat.format(dataCheckout.createdAt);
+
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(top: 16, left: 20, right: 20),
@@ -62,7 +72,7 @@ class OrderWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "20/10/2024",
+                      formattedDate,
                       style: primaryTextStyle.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,

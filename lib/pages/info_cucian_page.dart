@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:syn_laundry/models/Product_model.dart';
 import '../themes/themes.dart';
 
 class InfoCucianPage extends StatefulWidget {
-  const InfoCucianPage({super.key});
+  const InfoCucianPage({super.key, required this.dataProduct});
+
+  final ProductModel dataProduct;
 
   @override
   State<InfoCucianPage> createState() => _InfoCucianPageState();
@@ -15,16 +18,23 @@ class _InfoCucianPageState extends State<InfoCucianPage> {
 
   // siapkan variabel utk menampung nilai default pada pilihan dropdown (untuk DropDown)
   String metodeBayar = "Tunai";
+  int productId= 0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     dateInput.text = ""; //set the initial value of text field
+    // saat pertama kali halaman terakses, ubah nilai variabel productId.nya
+    productId = widget.dataProduct.id;
   }
 
   @override
   Widget build(BuildContext context) {
+
+    print("Product ID : " + productId.toString());
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syn_laundry/models/Product_model.dart';
+import 'package:syn_laundry/pages/info_cucian_page.dart';
 import 'package:syn_laundry/services/product_services.dart';
 import 'package:syn_laundry/themes/themes.dart';
 import 'package:syn_laundry/widgets/product_widget.dart';
@@ -131,8 +133,15 @@ class BerandaPage extends StatelessWidget {
 
                             return Container(
                               margin: EdgeInsets.only(left: index > 0 ? 12 : 0 ),
-                              child: ProductWidget(
-                                productModel: dataProduct,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(InfoCucianPage(
+                                    dataProduct: dataProduct,
+                                  ));
+                                },
+                                child: ProductWidget(
+                                  productModel: dataProduct,
+                                ),
                               ),
                             );
 

@@ -44,7 +44,21 @@ class ListOrderPage extends StatelessWidget {
                     color: primaryColor,
                   ),
                 );
+              } else if (snapshot.data!.length < 1) {
+                return Column(
+                  children: [
+                    Image.asset(
+                      "assets/img-empty.png",
+                      width: 150,
+                    ),
+                    Text(
+                      "Belum ada Pesanan",
+                      style: primaryTextStyle,
+                    ),
+                  ],
+                );
               } else if (snapshot.hasData) {
+                print(snapshot.data!.length);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -83,6 +97,19 @@ class ListOrderPage extends StatelessWidget {
                     color: primaryColor,
                   ),
                 );
+              } else if (snapshot.data!.length < 1) {
+                return Column(
+                  children: [
+                    Image.asset(
+                      "assets/img-empty.png",
+                      width: 150,
+                    ),
+                    Text(
+                      "Belum ada Pesanan",
+                      style: primaryTextStyle,
+                    ),
+                  ],
+                );
               } else if (snapshot.hasData) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,6 +121,15 @@ class ListOrderPage extends StatelessWidget {
                     })
                   ],
                 );
+              } else if(snapshot.data!.length < 1){
+                return Column(
+                  children: [
+                    Image.asset("assets/img-empty.png", width: 150, ),
+                    Text("Belum ada Pesanan", style: primaryTextStyle, ),
+                  ],
+                );
+              } else if (!snapshot.hasData) {
+                return Image.asset("assets/img-empty.png");
               }
 
               // default widget
@@ -123,6 +159,13 @@ class ListOrderPage extends StatelessWidget {
                     color: primaryColor,
                   ),
                 );
+              } else if(snapshot.data!.length < 1){
+                return Column(
+                  children: [
+                    Image.asset("assets/img-empty.png", width: 150, ),
+                    Text("Belum ada Pesanan", style: primaryTextStyle, ),
+                  ],
+                );
               } else if (snapshot.hasData) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,14 +177,12 @@ class ListOrderPage extends StatelessWidget {
                     })
                   ],
                 );
-              }
+              } 
 
               // default widget
               return Container();
             },
           ),
-
-         
         ],
       ),
     );
