@@ -4,9 +4,9 @@ import 'package:syn_laundry/models/Product_model.dart';
 import '../themes/themes.dart';
 
 class InfoCucianPage extends StatefulWidget {
-  const InfoCucianPage({super.key, required this.dataProduct});
+  const InfoCucianPage({super.key,  this.dataProduct});
 
-  final ProductModel dataProduct;
+  final ProductModel? dataProduct;
 
   @override
   State<InfoCucianPage> createState() => _InfoCucianPageState();
@@ -26,7 +26,7 @@ class _InfoCucianPageState extends State<InfoCucianPage> {
     super.initState();
     dateInput.text = ""; //set the initial value of text field
     // saat pertama kali halaman terakses, ubah nilai variabel productId.nya
-    productId = widget.dataProduct.id;
+    productId = widget.dataProduct!.id;
   }
 
   @override
