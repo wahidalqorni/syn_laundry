@@ -122,8 +122,11 @@ class BerandaPage extends StatelessWidget {
                   future: ProductServices.getProductList(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator(
-                        color: primaryColor,
+                      return Container(
+                        margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.40),
+                        child: CircularProgressIndicator(
+                          color: primaryColor,
+                        ),
                       );
                     } else if (snapshot.hasData) {
                       return Row(

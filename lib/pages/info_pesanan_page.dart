@@ -43,12 +43,17 @@ class _InfoPesananPageState extends State<InfoPesananPage> {
           "Informasi Pesanan",
           style: primaryTextStyle.copyWith(fontWeight: FontWeight.w500),
         ),
-        leading: Container(
-          margin: EdgeInsets.only(left: 10),
-          child: Image.asset(
-            'assets/ic-back.png',
-            width: 36,
-            height: 36,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Image.asset(
+              'assets/ic-back.png',
+              width: 36,
+              height: 36,
+            ),
           ),
         ),
       ),
