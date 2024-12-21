@@ -12,6 +12,7 @@ import 'package:syn_laundry/pages/info_pesanan_page.dart';
 import 'package:syn_laundry/pages/landing_page.dart';
 
 class CartController extends GetxController {
+  // variabel inputan dari form
   TextEditingController namaLengkap =
       TextEditingController(text: SpUtil.getString("name"));
   TextEditingController noHP =
@@ -21,7 +22,11 @@ class CartController extends GetxController {
 
   // function post Cart
   Future postCartNow(ProductModel dataProduct) async {
+    
+    // url keranjang
     var url = Uri.parse(Config().keranjangPost);
+
+    // url checkout
     var url2 = Uri.parse(Config().checkoutPostById);
 
     try {
@@ -37,11 +42,12 @@ class CartController extends GetxController {
 
       if (response.statusCode == 200) {
         // tampung bbrp data hasil dri json
+        // ambil id saat proses input keranjang berhasil
         var idCart = responseDecode["data"]["id"];
         // var jumlahBeli = responseDecode["data"]["jumlah"];
         // var totalharga = responseDecode["data"]["totalharga"];
 
-        // proses input checkout
+        //2. proses input checkout
         final response2 = await http.post(url2, body: {
           'keranjang_id': idCart.toString(),
           'user_id': SpUtil.getInt("id_user").toString(),
@@ -55,17 +61,17 @@ class CartController extends GetxController {
 
         if (response2.statusCode == 200) {
           // tampilkan snackbar
-          Get.snackbar("Success", responseDecode2["message"]);
+          Get.snackbar("Success", responseDecode2["message"], duration: Duration(seconds: 5));
           // arahkan ke beranda
           Get.offAll(LandingPage());
         } else {
-          Get.snackbar("Failed", responseDecode2["message"]);
+          Get.snackbar("Failed", responseDecode2["message"], duration: Duration(seconds: 5) );
         }
       } else {
-        Get.snackbar("Failed", responseDecode["message"]);
+        Get.snackbar("Failed", responseDecode["message"], duration: Duration(seconds: 5));
       }
     } catch (e) {
-      Get.snackbar("Failed", e.toString());
+      Get.snackbar("Failed", e.toString(), duration: Duration(seconds: 5));
     }
   }
 }
