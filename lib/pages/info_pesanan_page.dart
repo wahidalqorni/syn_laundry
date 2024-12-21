@@ -239,9 +239,9 @@ class _InfoPesananPageState extends State<InfoPesananPage> {
             TextFormField(
               controller: cartC.alamat,
               maxLines: 4,
-              keyboardType: TextInputType.phone,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                hintText: "Masukkan Nomer Telepon",
+                hintText: "Masukkan Alamat",
                 hintStyle: secondaryTextStyle,
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
