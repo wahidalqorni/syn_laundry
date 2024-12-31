@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syn_laundry/models/Checkout_model.dart';
+import 'package:syn_laundry/pages/upload_page.dart';
 import 'package:syn_laundry/services/checkout_services.dart';
 import 'package:syn_laundry/themes/themes.dart';
 import 'package:syn_laundry/widgets/order_widget.dart';
@@ -58,13 +60,20 @@ class ListOrderPage extends StatelessWidget {
                   ],
                 );
               } else if (snapshot.hasData) {
-                print(snapshot.data!.length);
+                
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ...snapshot.data!.map((dataCheckout) {
-                      return OrderWidget(
-                        dataCheckout: dataCheckout,
+                      return InkWell(
+                        onTap: () {
+                          Get.to(UploadPage(
+                            dataCheckout: dataCheckout,
+                          ));
+                        },
+                        child: OrderWidget(
+                          dataCheckout: dataCheckout,
+                        ),
                       );
                     })
                   ],

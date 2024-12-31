@@ -3,6 +3,8 @@ import 'package:syn_laundry/models/Checkout_model.dart';
 import 'package:syn_laundry/themes/themes.dart';
 import 'package:intl/intl.dart';
 
+import '../config/config.dart';
+
 class OrderWidget extends StatelessWidget {
   const OrderWidget({
     super.key,
@@ -16,6 +18,8 @@ class OrderWidget extends StatelessWidget {
 
     // double c = 4.56;
     // int a = c.floor();
+
+    num subTotal = num.parse(dataCheckout.item.hargaSatuan) * num.parse(dataCheckout.item.jumlah);
 
     // membuat format tanggal menggunakan library intl
     DateFormat dateFormat = DateFormat('dd/MM/yyy');
@@ -78,6 +82,49 @@ class OrderWidget extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Jumlah",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                     "Harga Satuan",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                     "Sub Total",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Ongkir",
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      "Grand Total",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
 
@@ -129,6 +176,49 @@ class OrderWidget extends StatelessWidget {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                 ),
+                    ),
+
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      dataCheckout.item.jumlah,
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      Config.convertToIdr(int.parse(dataCheckout.item.hargaSatuan),0),
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+
+                    Text(
+                      Config.convertToIdr(subTotal,0),
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      Config.convertToIdr(int.parse(dataCheckout.ongkir),0),
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      Config.convertToIdr(int.parse(dataCheckout.grandTotal),0),
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

@@ -43,6 +43,8 @@ dependencies:
   http: ^1.2.2
   # untuk menyimpan data di cache hape
   sp_util: ^2.0.3
+  # untuk upload gambar
+  image_picker: ^0.8.4+11
 
 dev_dependencies:
   flutter_test:

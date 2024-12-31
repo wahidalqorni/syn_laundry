@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:syn_laundry/config/config.dart';
 import 'package:syn_laundry/models/Product_model.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +13,8 @@ import 'package:syn_laundry/pages/info_cucian_page.dart';
 import 'package:syn_laundry/pages/info_pesanan_page.dart';
 import 'package:syn_laundry/pages/landing_page.dart';
 
+import '../themes/themes.dart';
+
 class CartController extends GetxController {
   // variabel inputan dari form
   TextEditingController namaLengkap =
@@ -19,6 +23,8 @@ class CartController extends GetxController {
       TextEditingController(text: SpUtil.getString("telepon"));
   TextEditingController alamat = TextEditingController();
   TextEditingController jumlah = TextEditingController();
+
+  RxBool isLoading = false.obs;
 
   // function post Cart
   Future postCartNow(ProductModel dataProduct) async {
@@ -72,6 +78,97 @@ class CartController extends GetxController {
       }
     } catch (e) {
       Get.snackbar("Failed", e.toString(), duration: Duration(seconds: 5));
+    }
+  }
+
+  // upload bukti bayar
+  var selectedImagePath = ''.obs;
+  var selectedImageSize = ''.obs;
+
+  void getImage(ImageSource imageSource) async {
+    final _picker = ImagePicker();
+    final pickedFile = await _picker.pickImage(
+      source: imageSource,
+      maxHeight: 720,
+      maxWidth: 1280,
+    );
+
+    if (pickedFile != null) {
+       // mengisikan nilai pada variabel selectedImagePath dengan pickedFile.path
+      selectedImagePath.value = pickedFile.path;
+
+      // resize image
+      selectedImageSize.value =
+          ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              "Mb ";
+     
+      // selectedImagePath.value = pickedFile.path;
+    } else {
+      // jika cancel pengambilan gambar
+      Get.snackbar('Warning!', 'Tidak ada gambar yang dipilih',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color.fromARGB(255, 218, 113, 28),
+          margin: const EdgeInsets.only(bottom: 6, right: 6, left: 6),
+          colorText: whiteColor);
+    }
+  }
+
+  // post upload bukti bayar
+  Future<void> sendData(String checkoutId) async {
+    var url = Uri.parse(Config().urlUploadBuktiBayar);
+    try {
+      isLoading.value = true;
+      var request = http.MultipartRequest('POST', url);
+      request.files.add(await http.MultipartFile.fromPath(
+          'buktibayar', selectedImagePath.value));
+      request.fields['checkout_id'] = checkoutId;
+
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      var responseDecode = jsonDecode(response.body);
+
+      if (responseDecode['success'] == true) {
+        Get.snackbar(
+          "Success",
+          responseDecode['message'],
+          colorText: Colors.white,
+          backgroundColor: Colors.green,
+          margin: const EdgeInsets.only(
+            top: 8,
+            left: 6,
+            right: 6,
+          ),
+        );
+        isLoading.value = false;
+        Get.offAll(LandingPage());
+      } else {
+        isLoading.value = false;
+        Get.snackbar(
+          "Error",
+          responseDecode['message'] + ", Silahkan Coba Lagi",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          margin: const EdgeInsets.only(
+            top: 8,
+            left: 6,
+            right: 6,
+          ),
+        );
+      }
+    } catch (e) {
+      isLoading.value = false;
+      Get.snackbar(
+        "Error",
+        "$e, Silahkan Coba Lagi",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+        margin: const EdgeInsets.only(
+          top: 8,
+          left: 6,
+          right: 6,
+        ),
+      );
     }
   }
 }

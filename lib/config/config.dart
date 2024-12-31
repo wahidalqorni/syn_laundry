@@ -26,6 +26,8 @@ class Config {
   String checkoutListProses = "$urlAPI/checkout-list-proses?user_id=";
   String checkoutListSelesai = "$urlAPI/checkout-list-selesai?user_id=";
 
+  String urlUploadBuktiBayar = "$urlAPI/upload-bukti-bayar";
+
   // membuat fungsi untuk format currency
   static String convertToIdr(dynamic number, int decimalDigit ) {
     NumberFormat currencyFormatter = NumberFormat.currency(
